@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ConsoleTools;
+using Spectre.Console;
 
 namespace BakeryApp
 {
@@ -9,10 +9,10 @@ namespace BakeryApp
     static void Main()
     {
       // Send intro msg
-      Console.WriteLine("Welcome to Pierre's Bakery");
-      Console.WriteLine("Here is our bread deal (buy 2 get 1 free)(per type of bread and order sub item)");
-      Console.WriteLine("Here is our pastry deal (buy 2 get 1 half off)(per type of pastry and order sub item)");
-      Console.WriteLine("Press any key to continue");
+      AnsiConsole.MarkupLine("[dodgerblue1]Welcome to Pierre's Bakery[/]");
+      AnsiConsole.MarkupLine("[deepskyblue3]Here is our bread deal (buy 2 get 1 free)(per type of bread and order sub item)[/]");
+      AnsiConsole.MarkupLine("[deepskyblue3]Here is our pastry deal (buy 2 get 1 half off)(per type of pastry and order sub item)[/]");
+      AnsiConsole.MarkupLine("[springgreen1]Press any key to continue[/]");
       Console.ReadLine();
 
       bool close = false;
@@ -39,13 +39,12 @@ namespace BakeryApp
       }
 
       // Print total
-      Console.Write("Your order total is: ");
-      Console.Write(String.Format("${0}", total));
+      AnsiConsole.MarkupLine(String.Format("[springgreen1]Your order total is: ${0}[/]", total));
     }
     public static int GetAmount(string phrase)
     {
       // Ask phrase
-      Console.WriteLine(phrase);
+      AnsiConsole.MarkupLine(String.Format("[springgreen1]{0}[/]", phrase));
 
       // Validate user entered something
       string strInput = "";
@@ -60,79 +59,48 @@ namespace BakeryApp
       bool canParse = int.TryParse(strInput, out input);
       if (!canParse)
       {
-        Console.WriteLine("Invalid amount");
+        AnsiConsole.MarkupLine("[red]Invalid input[/]");
         Environment.Exit(1);
       }
       return input;
     }
     public static string BuyMenu()
     {
-      string result = "";
-      Action<string> setResult = input => result = input;
-      ConsoleMenu breadmenu = new ConsoleMenu()
-          .Add("bread", (thisMenu) =>
-          {
-            setResult("bread");
-            thisMenu.CloseMenu();
-          })
-          .Add("pastry", (thisMenu) =>
-          {
-            setResult("pastry");
-            thisMenu.CloseMenu();
-          })
-          .Add("Done", (thisMenu) =>
-          {
-            setResult("done");
-            thisMenu.CloseMenu();
-          })
-          .Configure(config =>
-          {
-            config.Selector = "--> ";
-            config.Title = "What would you like to buy?";
-            config.EnableWriteTitle = true;
-          });
-      breadmenu.Show();
+      string result = AnsiConsole.Prompt(
+          new SelectionPrompt<string>()
+              .Title("[blue]What would you like to buy?[/]")
+              .PageSize(3)
+              .AddChoices(new[] { "Bread", "Pastry", "Done" })).ToLower();
       return result;
     }
     public static string OpenBreadMenu()
     {
-      string result = "bread";
-      Action<string> setResult = input => result = input;
-      ConsoleMenu breadmenu = new ConsoleMenu();
+      List<string> breadList = new List<string> { };
       foreach (KeyValuePair<string, int> b in Bread.prices)
       {
-        breadmenu.Add(String.Format("(${0}) {1}", b.Value, b.Key), (thisMenu) =>
-        {
-          setResult(b.Key);
-          thisMenu.CloseMenu();
-        });
+        breadList.Add(String.Format("[green](${0})[/] [orange3]{1}[/]", b.Value, b.Key));
       }
-      breadmenu.Configure(config =>
-      {
-        config.Selector = "--> ";
-        config.Title = "What kind of bread would you like?";
-        config.EnableWriteTitle = true;
-      });
-      breadmenu.Show();
+      string result = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+            .Title("[darkorange3]What kind of bread would you like?[/]")
+            .PageSize(Bread.prices.Count)
+            .AddChoices(breadList));
+      result = result.Split("[orange3]")[1].Replace("[/]", "");
       return result;
     }
     public static string OpenPastryMenu()
     {
-      string result = "pastry";
-      Action<string> setResult = input => result = input;
-      ConsoleMenu breadmenu = new ConsoleMenu()
-          .Add("($2) pastry", (thisMenu) =>
-          {
-            setResult("pastry");
-            thisMenu.CloseMenu();
-          })
-          .Configure(config =>
-          {
-            config.Selector = "--> ";
-            config.Title = "What kind of pastry would you like?";
-            config.EnableWriteTitle = true;
-          });
-      breadmenu.Show();
+      List<string> pastryList = new List<string> { };
+      foreach (KeyValuePair<string, int> p in Pastry.prices)
+      {
+        pastryList.Add(String.Format("[green](${0})[/] [lightsalmon1]{1}[/]", p.Value, p.Key));
+      }
+      string result = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+            .Title("[salmon1]What kind of pastry would you like?[/]")
+            .PageSize(Pastry.prices.Count)
+            .AddChoices(pastryList));
+      result = result.Split("[lightsalmon1]")[1].Replace("[/]", "");
       return result;
     }
   }

@@ -5,7 +5,9 @@ namespace BakeryApp
   public class Pastry
   {
     public static Dictionary<string, int> prices = new Dictionary<string, int> {
-      {"pastry", 2}
+      {"pastry", 2},
+      {"doughnut", 2},
+      {"cupcake", 2}
     };
     public static int GetPrice(int amount, string type = "pastry")
     {
