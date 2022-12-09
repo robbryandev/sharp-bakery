@@ -10,6 +10,7 @@ Basic price calculator using c#
 * C#
 * .Net6
 * MsTest
+* Spectre
 
 ## Setup/Installation Requirements
 
