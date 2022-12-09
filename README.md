@@ -16,6 +16,12 @@ Basic price calculator using c#
 ### Requirements
 * dotnet >= 6.0.402
 
+### Setup
+inside BakeryApp run:
+```
+dotnet restore
+```
+
 ### Run
 inside BakeryApp run:
 ```
