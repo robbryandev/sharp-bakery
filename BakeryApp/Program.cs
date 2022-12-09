@@ -8,12 +8,19 @@ namespace BakeryApp
   {
     static void Main()
     {
+      // Send picture
+      CanvasImage image = new CanvasImage("images/bakery.png");
+      image.NoMaxWidth();
+
+      AnsiConsole.Write(image);
+
       // Send intro msg
       AnsiConsole.MarkupLine("[dodgerblue1]Welcome to Pierre's Bakery[/]");
       AnsiConsole.MarkupLine("[deepskyblue3]Here is our bread deal (buy 2 get 1 free)(per type of bread and order sub item)[/]");
       AnsiConsole.MarkupLine("[deepskyblue3]Here is our pastry deal (buy 2 get 1 half off)(per type of pastry and order sub item)[/]");
       AnsiConsole.MarkupLine("[springgreen1]Press any key to continue[/]");
       Console.ReadLine();
+      Console.Clear();
 
       bool close = false;
       int total = 0;
@@ -49,6 +56,7 @@ namespace BakeryApp
       // Validate user entered something
       string strInput = "";
       string? getInput = Console.ReadLine();
+      Console.Clear();
       if (getInput != null)
       {
         strInput = getInput;
@@ -71,6 +79,7 @@ namespace BakeryApp
               .Title("[blue]What would you like to buy?[/]")
               .PageSize(3)
               .AddChoices(new[] { "Bread", "Pastry", "Done" })).ToLower();
+      Console.Clear();
       return result;
     }
     public static string OpenBreadMenu()
@@ -86,6 +95,7 @@ namespace BakeryApp
             .PageSize(Bread.prices.Count)
             .AddChoices(breadList));
       result = result.Split("[orange3]")[1].Replace("[/]", "");
+      Console.Clear();
       return result;
     }
     public static string OpenPastryMenu()
@@ -101,6 +111,7 @@ namespace BakeryApp
             .PageSize(Pastry.prices.Count)
             .AddChoices(pastryList));
       result = result.Split("[lightsalmon1]")[1].Replace("[/]", "");
+      Console.Clear();
       return result;
     }
   }
