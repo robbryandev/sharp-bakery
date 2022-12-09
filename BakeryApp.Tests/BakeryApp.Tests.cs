@@ -8,12 +8,12 @@ namespace PrimeApp.Tests
     [TestMethod]
     public void GetPrice_ShouldReturnPriceForOneItem_string()
     {
-      Assert.AreEqual("$5", BakeryApp.Bread.GetPrice(1));
+      Assert.AreEqual(5, BakeryApp.Bread.GetPrice(1));
     }
     [TestMethod]
     public void GetPrice_ShouldReturnPriceForItemsWithSale_string()
     {
-      Assert.AreEqual("$20", BakeryApp.Bread.GetPrice(5));
+      Assert.AreEqual(20, BakeryApp.Bread.GetPrice(5));
     }
   }
   [TestClass]
@@ -22,12 +22,12 @@ namespace PrimeApp.Tests
     [TestMethod]
     public void GetPrice_ShouldReturnPriceForOneItem_string()
     {
-      Assert.AreEqual("$2", BakeryApp.Pastry.GetPrice(1));
+      Assert.AreEqual(2, BakeryApp.Pastry.GetPrice(1));
     }
     [TestMethod]
     public void GetPrice_ShouldReturnPriceForItemsWithSale_string()
     {
-      Assert.AreEqual("$9", BakeryApp.Pastry.GetPrice(5));
+      Assert.AreEqual(9, BakeryApp.Pastry.GetPrice(5));
     }
   }
 }
