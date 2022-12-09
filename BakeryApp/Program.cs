@@ -10,8 +10,8 @@ namespace BakeryApp
     {
       // Send intro msg
       Console.WriteLine("Welcome to Pierre's Bakery");
-      Console.WriteLine("Here is our bread deal (buy 2 get 1 free)(per type of bread)");
-      Console.WriteLine("You can buy a pastry for $2 (buy 2 get 1 half off)");
+      Console.WriteLine("Here is our bread deal (buy 2 get 1 free)(per type of bread and order sub item)");
+      Console.WriteLine("Here is our pastry deal (buy 2 get 1 half off)(per type of pastry and order sub item)");
       Console.WriteLine("Press any key to continue");
       Console.ReadLine();
 
