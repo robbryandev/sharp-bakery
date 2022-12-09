@@ -3,7 +3,7 @@
 namespace PrimeApp.Tests
 {
   [TestClass]
-  public class BakeryAppTests
+  public class BreadTests
   {
     [TestMethod]
     public void GetPrice_ShouldReturnPriceForOneItem_string()
@@ -14,6 +14,20 @@ namespace PrimeApp.Tests
     public void GetPrice_ShouldReturnPriceForItemsWithSale_string()
     {
       Assert.AreEqual("$20", BakeryApp.Bread.GetPrice(5));
+    }
+  }
+  [TestClass]
+  public class PastryTests
+  {
+    [TestMethod]
+    public void GetPrice_ShouldReturnPriceForOneItem_string()
+    {
+      Assert.AreEqual("$2", BakeryApp.Pastry.GetPrice(1));
+    }
+    [TestMethod]
+    public void GetPrice_ShouldReturnPriceForItemsWithSale_string()
+    {
+      Assert.AreEqual("$9", BakeryApp.Pastry.GetPrice(5));
     }
   }
 }
