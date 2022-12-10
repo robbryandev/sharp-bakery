@@ -38,6 +38,22 @@ dotnet build
 ## Known Bugs
 * None
 
+## Showcase
+### Start page
+![start image](https://github.com/robbryandev/sharp-bakery/blob/main/ShowcaseImages/start.PNG)
+
+### First select
+![first select](https://github.com/robbryandev/sharp-bakery/blob/main/ShowcaseImages/first.PNG)
+
+### Bread select
+![bread select](https://github.com/robbryandev/sharp-bakery/blob/main/ShowcaseImages/bread.PNG)
+
+### Pastry select
+![pastry select](https://github.com/robbryandev/sharp-bakery/blob/main/ShowcaseImages/pastry.PNG)
+
+### Total
+![total](https://github.com/robbryandev/sharp-bakery/blob/main/ShowcaseImages/total.PNG)
+
 ## License
 
 MIT License
