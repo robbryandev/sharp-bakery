@@ -78,9 +78,9 @@ namespace BakeryApp
           new SelectionPrompt<string>()
               .Title("[blue]What would you like to buy?[/]")
               .PageSize(3)
-              .AddChoices(new[] { "Bread", "Pastry", "Done" })).ToLower();
+              .AddChoices(new[] { "[darkorange3]Bread[/]", "[salmon1]Pastry[/]", "[red]Done[/]" }));
       Console.Clear();
-      return result;
+      return result.Split("]", 2)[1].Replace("[/]", "").ToLower();
     }
     public static string OpenBreadMenu()
     {
